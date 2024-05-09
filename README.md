@@ -1,8 +1,10 @@
+# Name: Sivakumar R
+# Ref no: 212223230209
+
 # Linux-IPC-Message-Queues
 Linux IPC-Message Queues
 
 # AIM:
-
 To write a C program that receives a message from message queue and display them
 
 # DESIGN STEPS:
@@ -23,12 +25,11 @@ Execute the C Program for the desired output.
 
 ## C program that receives a message from message queue and display them
 ```
-// writer process
+/ C Program for Message Queue (Writer Process) 
 #include <stdio.h> 
 #include <sys/ipc.h> 
 #include <sys/msg.h> 
-#include <string.h>
-#include <stdlib.h>
+
 // structure for message queue 
 struct mesg_buffer { 
 	long mesg_type; 
@@ -37,24 +38,22 @@ struct mesg_buffer {
 int main() 
 { 	key_t key; 
 	int msgid; 
-
+// ftok to generate unique key 
 	key = ftok("progfile", 65); 
-
-
+	// msgget creates a message queue 
+	// and returns identifier 
 	msgid = msgget(key, 0666 | IPC_CREAT); 
 	message.mesg_type = 1; 
 	printf("Write Data : "); 
-scanf("%s",message.mesg_text);
-
+	gets(message.mesg_text); 
+	// msgsnd to send message 
 	msgsnd(msgid, &message, sizeof(message), 0); 
-
+	// display the message 
 	printf("Data send is : %s \n", message.mesg_text); 
 	return 0; 
 } 
 
-
-// C Program for Message Queue (reader Process) 
-
+// C Program for Message Queue (Reader Process)
 #include <stdio.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
@@ -85,11 +84,9 @@ int main()
 }
 ```
 
-## OUTPUT:
+## OUTPUT
 
-![image](https://github.com/22008686/Linux-IPC-Message-Queues/assets/118916413/764f5e2c-7010-4a65-ba2c-850d8e1ded34)
-
+![image](https://github.com/23006860/Linux-IPC-Message-Queues/assets/139841752/059267ea-e566-4f37-b628-e7db993d4331)
 
 # RESULT:
-
 The programs are executed successfully.
